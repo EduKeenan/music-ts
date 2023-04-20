@@ -10,6 +10,7 @@ export interface IResponseModelLogin {
     status: number,
     data : Array<Usuario> | Array<Login> |string,
     token?: string 
+    nome?: string
 }
 
 export interface TokenPayload {

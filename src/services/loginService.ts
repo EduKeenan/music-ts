@@ -19,7 +19,7 @@ export async function login(req : Request) : Promise<IResponseModelLogin>{
     const bateSenha = await compararHash(body.senha, existe.data[0].senha);
     if(!bateSenha) return {status: 401, data: `Não autorizado.`}
     const token = sign({id_usuario: existe.data[0].id, adm: admin}, process.env.JWT_KEY as string, {expiresIn: 600})
-    return {status: 200, data: `Login realizado com sucesso.`, token: token}
+    return {status: 200, data: `Login realizado com sucesso.`, token: token, nome: existe.data[0].nome }
 }
 
 export async function logout(req: Request) : Promise<IResponseModel> {
@@ -52,7 +52,7 @@ export async function consultarLogout(req: Request) : Promise<IResponseModelLogi
 async function verificarEmail(email: string) : Promise<IResponseModel> {
     try {
         const result = await Usuario.findAll({
-            attributes: [`id`, `email`, `senha`, `role`],
+            attributes: [`id`, `nome`, `email`, `senha`, `role`],
             where:{
                 email : email
             },

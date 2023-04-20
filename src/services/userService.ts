@@ -68,16 +68,13 @@ export async function editarUsuario(req : Request) : Promise<IResponseModel> {
     const body : IUser = req.body;
     if(!body.id) return {status: 400, data: `A requisição deve conter o campo id.`}
     if(body.nome === `` || !body.nome) return {status: 400, data: `A requisição deve conter o campo nome.`}
-    if(body.senha === ``|| !body.senha) return {status: 400, data: `A requisição deve conter o campo senha.`}
     if(body.email === ``|| !body.email) return {status: 400, data: `A requisição deve conter o campo email.`}
     if((body.role != `ADMIN` && body.role != `USER`)) return {status: 400, data: `A role deve ser 'ADMIN' OU 'USER'.`}
-    body.senha = await gerarHash(body.senha);
 
     try{
         const result = await Usuario.update({
             nome: body.nome,
             email: body.email,
-            senha: body.senha,
             role: body.role
         },{
             where: {

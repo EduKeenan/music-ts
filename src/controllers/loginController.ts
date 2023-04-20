@@ -6,7 +6,7 @@ const loginController = Router();
 
 loginController.post(`/login`, async (req, res) : Promise<Response> => {
     const result = await login(req);
-    return res.status(result.status).send({data: result.data, token: result?.token});
+    return res.status(result.status).send({data: result.data, token: result?.token, nome: result?.nome});
 })
 
 loginController.post(`/logout`, verificarJWT , async (req, res) : Promise<Response> => {
