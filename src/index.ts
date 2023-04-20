@@ -3,8 +3,10 @@ import userController from './controllers/userController';
 import loginController from './controllers/loginController';
 import playlistController from './controllers/playlistController';
 import dotenv from 'dotenv';
+import cors from 'cors';
 dotenv.config();
 import {connection} from './connection';
+import musicaController from './controllers/musicaController';
 const app = express();
 
 connection.sync().then(()=>{
@@ -12,10 +14,11 @@ connection.sync().then(()=>{
 }).catch((erro)=> {
     console.log(`Erro na conexão com o banco...`, erro);
 });
-
+app.use(cors())
 app.use(express.json());
 
 app.use(playlistController);
+app.use(musicaController);
 app.use(userController);
 app.use(loginController);
 

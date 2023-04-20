@@ -63,7 +63,7 @@ export class PlaylistMusica extends Model{
     tableName: `musicas`,
     timestamps: false
 })
-export class Musicas extends Model{
+export class MusicasP extends Model{
     @Column({
         type: DataType.INTEGER,
         primaryKey: true,

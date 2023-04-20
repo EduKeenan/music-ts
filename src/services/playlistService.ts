@@ -15,8 +15,7 @@ export async function criarPlaylist(req: Request) : Promise<IResponseModel> {
             id_usuario: req.id_usuario,
             genero: body.genero
         })
-        
-        body.musicas.forEach(async (musica : number) => {
+        body.musicas.forEach(async (musica) => {
             await PlaylistMusica.create({
                 id_playlist: resultPlaylist.dataValues?.id,
                 id_musica: musica

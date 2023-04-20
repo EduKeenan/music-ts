@@ -1,7 +1,8 @@
 import  {Sequelize}  from 'sequelize-typescript';
 import {Usuario} from './models/user.model';
 import { Login } from './models/login.model';
-import { Musicas, Playlist, PlaylistMusica } from './models/playlist.model';
+import {Musicas} from './models/musica.model'
+import { MusicasP, Playlist, PlaylistMusica } from './models/playlist.model';
 export const connection = new Sequelize(
     {
         database: process.env.DB_SCHEMA,
@@ -10,6 +11,6 @@ export const connection = new Sequelize(
         host: process.env.DB_HOST,
         dialect: `mariadb`,
         port: 3306,
-        models: [Usuario, Login, Playlist, PlaylistMusica, Musicas]
+        models: [Usuario, Login, Playlist, PlaylistMusica, Musicas, MusicasP]
     }
 );
